@@ -80,7 +80,6 @@ export class World {
      */
     public addComponentToEntity(entity: Entity, component: Component): void {
         const componentManager = this.entities.get(entity);
-        console.log(componentManager);
 
         if (!componentManager) {
             throw new Error(`entity id: ${entity.id} does not exist in world. It might be destroyed or exist in another world`);
@@ -90,7 +89,7 @@ export class World {
     }
 
     /**
-     * Gets a component from an entity
+     * Gets a component from an entity in the world
      * @param entity the entity to get the components from
      * @returns the component manager for the entity
      */
@@ -98,17 +97,22 @@ export class World {
         const componentManager = this.entities.get(entity);
 
         if (!componentManager) {
-            throw new Error(`entity id: ${entity.id} does not exist in world. It might be destroyed or exist in another world`);
+            throw new Error(`entity id: ${entity.id} does not exist in the world. It might be destroyed or exist in another world`);
         }
 
         return componentManager;
     }
 
+    /**
+     * Removes a component from an entity in the world
+     * @param entity the entity to remove the component from
+     * @param componentType the component to remove
+     */
     public removeComponentFromEntity(entity: Entity, componentType: ComponentType): void {
         const componentManager = this.entities.get(entity);
 
         if (!componentManager) {
-            throw new Error(`entity id: ${entity.id} does not exist in world. It might be destroyed or exist in another world`);
+            throw new Error(`entity id: ${entity.id} does not exist in the world. It might be destroyed or exist in another world`);
         }
 
         componentManager.remove(componentType);
